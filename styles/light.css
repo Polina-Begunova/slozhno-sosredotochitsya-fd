@@ -12,7 +12,7 @@
 }
 
 @media (prefers-color-scheme: light) {
-  :root:not(.theme-dark):not(.theme-light) {    
+  :root:not(.theme-dark):not(.theme-light) {
   --rec-visibility: hidden;
   --cover-image: url(../images/cover-image-light.png);
   --bg-color: #fff1f7;
