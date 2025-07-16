@@ -2,6 +2,8 @@
 
 .page {
   /* сохраните в разметке и стилях класс page у тега body. Он удобен, чтобы составлять селекторы для разных цветовых тем. */
+  display: grid;
+  grid-template-rows: auto 1fr auto;
   background-image: var(--cover-image);
   background-position: center;
   background-size: cover;
@@ -16,8 +18,8 @@
   min-height: 668px;
   display: grid;
   grid-template-rows: 1fr auto 1fr;
+  justify-self: center;
   align-self: center;
-  justify-self: start;
 }
 
 .header,
@@ -38,10 +40,6 @@
   text-align: center;
   text-transform: uppercase;
   display: var(--rec-visibility, visible);
-}
-
-.theme-light .header__rec {
-  display: none;
 }
 
 /*decoration element circle*/
@@ -114,7 +112,7 @@
 }
 
 .header__theme-menu-button:hover {
-  border-color: rgba(var(--accent-color), 0.4);
+  border: 1px solid color-mix(in srgb, currentColor 40%, transparent);
 }
 
 .header__theme-menu-button:focus-visible {
@@ -129,9 +127,9 @@
   font-weight: var(--font-weight-bold);
   line-height: var(--line-height-title);
   text-transform: lowercase;
-  padding-block-start: 65px;
   padding-inline-start: var(--main-padding);
   padding-inline-end: var(--main-padding);
+  padding-block-start: 61px;
   padding-block-end: 55px;
   color: var(--main-title-color);
 }
@@ -147,19 +145,24 @@
 
 .content {
   display: grid;
-  gap: 50px;
 }
 
 .section {
   display: grid;
   gap: 20px;
   padding: 0 var(--main-padding);
+  margin-block-end: 50px;
+}
+
+section:last-child {
+  margin-block-end: 0;
 }
 
 .gallery {
   display: grid;
   gap: 10px;
   padding: 0 var(--main-padding) 40px;
+  margin-block-end: 0;
 }
 
 .section__title {
@@ -170,16 +173,26 @@
   color: var(--section-title-color);
 }
 
-.section:nth-child(1) .section__title {
-  margin-block-start: 40px;
+.focus-reasons {
+  padding-block-start: 40px;
+}
+.focus-reasons__content {
+  display: grid;
+  gap: 20px;
 }
 
-.article {
+.concentration-factors__content {
   display: grid;
-  gap: 10px;
+  gap: 20px;
+}
+
+.reasons_for_nonconcentration__content {
+  display: grid;
+  gap: 20px;
 }
 
 .article__title {
+  font-family: var(--font-family);
   font-weight: var(--font-weight-bold);
   font-size: var(--font-size-base);
   line-height: var(--line-height-base);
@@ -191,10 +204,7 @@
   font-size: var(--font-size-base);
   line-height: var(--line-height-base);
   color: var(--article-text-color);
-}
-
-.letter-spacing-wide {
-  letter-spacing: 0.08em;
+  margin-block-start: 10px;
 }
 
 .article__subtitle {
@@ -202,10 +212,7 @@
   font-weight: var(--font-weight-base);
   font-size: var(--font-size-base);
   line-height: var(--line-height-base);
-}
-
-.letter-spacing-wide_special {
-  letter-spacing: 0.14em;
+  margin-block-end: 10px;
 }
 
 .article__subtext {
@@ -215,11 +222,9 @@
   line-height: var(--line-height-base);
   color: var(--article-text-color);
 }
-
 .article__title + .article__subtitle {
-  margin-block-start: 10px;
+  margin-block-start: 20px;
 }
-
 .link__text {
   text-decoration: none;
   text-shadow: 2px 2px 0 var(--accent-color);
@@ -268,13 +273,8 @@
 }
 
 @media (min-width: 768px) {
-
   :root {
     --main-padding: 20px;
-  }
-
-  .content {
-    gap: 80px;
   }
 
   .header__theme-menu {
@@ -282,9 +282,9 @@
   }
 
   .header__title {
-    padding-top: 173px;
     font-size: clamp(7.5rem, 0.5625rem + 14.4531vw, 9.8125rem);
     padding-inline-start: 0px;
+    padding-block-start: 173px;
     padding-block-end: 162px;
   }
 
@@ -292,90 +292,35 @@
     width: calc(50% - 20px);
     justify-self: end;
   }
-
-  .section:nth-child(1) .section__title {
-    margin-block-start: 60px;
+  .section {
+    margin-block-end: 80px;
   }
-
   .focus-reasons {
     grid-template-columns: 1fr 2fr;
-    grid-template-areas:
-      "title content-1"
-      ". content-2";
+    padding-block-start: 60px;
   }
 
-  .section.focus-reasons .section__title {
-    grid-area: title;
+  .focus-reasons__content {
+    grid-column: 2;
   }
-
-  .section.focus-reasons .article:nth-child(2) {
-    grid-area: content-1;
-    margin-block-start: 60px;
-  }
-
-  .section.focus-reasons .article:nth-child(3) {
-    grid-area: content-2;
-  }
-
-  .section.concentration-factors {
+  .concentration-factors {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .section.concentration-factors .section__title {
-    grid-column: 1 / 2;
-  }
-
-  .section.concentration-factors .article {
-    grid-column: 1 / -1;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .section.concentration-factors .article__title,
-  .section.concentration-factors .article__text {
-    grid-column: 1 / -1;
-  }
-
-  section.reasons_for_nonconcentration {
     grid-template-columns: 1fr 2fr;
-    grid-template-areas:
-      "title article1"
-      ". article2"
-      ". article3"
-      ". article4"
-      ". article5";
   }
 
-  .section.reasons_for_nonconcentration .section__title {
-    grid-area: title;
+  .concentration-factors__title {
+    grid-column: 1;
   }
-
-  .section.reasons_for_nonconcentration .article:nth-child(2) {
-    grid-area: article1;
-  }
-
-  .section.reasons_for_nonconcentration .article:nth-child(3) {
-    grid-area: article2;
-  }
-
-  .section.reasons_for_nonconcentration .article:nth-child(4) {
-    grid-area: article3;
-  }
-
-  .section.reasons_for_nonconcentration .article:nth-child(5) {
-    grid-area: article4;
-  }
-
-  .section.reasons_for_nonconcentration .article:nth-child(6) {
-    grid-area: article5;
-  }
-
-  .section.reasons_for_nonconcentration .article {
+  .concentration-factors__content {
+    grid-column: 1 / -1;
     display: grid;
-    gap: 10px;
+    gap: 20px;
   }
-  
+
+  .reasons_for_nonconcentration {
+    grid-template-columns: 1fr 2fr;
+  }
+
   .section.gallery {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -422,11 +367,11 @@
 }
 
 @media (min-width: 1024px) {
-
   .header {
     min-width: 1024px;
+    width: 100%;
   }
-  
+
   .header__theme-menu {
     padding-block-start: 20px;
     padding-inline-start: 20px;
@@ -442,38 +387,9 @@
     padding-block-start: 180px;
     padding-block-end: 114px;
   }
-
-  .section.concentration-factors {
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-areas:
-      "title . ."
-      "article1 article2 article3";
+  .concentration-factors__content {
+    grid-template-columns: repeat(3, 1fr);
   }
-
-  .section.concentration-factors .section__title {
-    grid-area: title;
-  }
-
-  .section.concentration-factors .article:nth-child(2) {
-    grid-area: article1;
-  }
-
-  .section.concentration-factors .article:nth-child(3) {
-    grid-area: article2;
-  }
-
-  .section.concentration-factors .article:nth-child(4) {
-    grid-area: article3;
-  }
-  
-  .section.concentration-factors .article {
-    display: block;
-  }
-
-  .section.concentration-factors .article__title {
-    margin-block-end: 10px;
-  }
-  
   .footer__title {
     font-size: clamp(7.5rem, 0.5625rem + 14.4531vw, 9.8125rem);
   }

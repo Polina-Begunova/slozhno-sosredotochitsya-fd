@@ -1,26 +1,34 @@
 :root.theme-light {
   --cover-image: url(../images/cover-image-light.png);
   --bg-color: #fff1f7;
-  --main-title-color: #FFC2E6;
+  --main-title-color: #ffc2e6;
   --title-color: #353430;
   --accent-color: #ff8dcb;
-  --rec-visibility:hidden;
+  --rec-visibility: hidden;
   --article-text-color: #353430;
   --corner-color: #353430;
   --section-title-color: #353430;
-  --header-menu-color:#353430;
+  --header-menu-color: #353430;
+}
+
+.theme-light .header__rec {
+  display: none;
 }
 
 @media (prefers-color-scheme: light) {
   :root:not(.theme-dark):not(.theme-light) {
-  --rec-visibility: hidden;
-  --cover-image: url(../images/cover-image-light.png);
-  --bg-color: #fff1f7;
-  --title-color: #FFC2E6;
-  --accent-color: #ff8dcb;
-  --text-color: #353430;
-  --section-title-color: #353430;
-  --article-title-color: #353430;
-  --article-title-bg-color: var(--accent-color);
+    --rec-visibility: hidden;
+    --cover-image: url(../images/cover-image-light.png);
+    --bg-color: #fff1f7;
+    --title-color: #ffc2e6;
+    --accent-color: #ff8dcb;
+    --text-color: #353430;
+    --section-title-color: #353430;
+    --article-title-color: #353430;
+    --article-title-bg-color: var(--accent-color);
   }
+}
+
+:root:not(.theme-dark):not(.theme-light) .header__rec {
+  display: none;
 }
